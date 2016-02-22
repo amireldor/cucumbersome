@@ -39,10 +39,18 @@ class MainFrame : public wxFrame
 		wxButton* shortButton;
 		wxButton* longButton;
 		wxButton* pauseButton;
+		wxStaticText* infoLabel;
+		
+		// Virtual event handlers, overide them in your derived class
+		virtual void HandlePomodoro( wxCommandEvent& event ) { event.Skip(); }
+		virtual void HandleShortBreak( wxCommandEvent& event ) { event.Skip(); }
+		virtual void HandleLongBreak( wxCommandEvent& event ) { event.Skip(); }
+		virtual void HandlePause( wxCommandEvent& event ) { event.Skip(); }
+		
 	
 	public:
 		
-		MainFrame( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = wxT("Cucumbersome"), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 363,256 ), long style = wxDEFAULT_FRAME_STYLE|wxTAB_TRAVERSAL );
+		MainFrame( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = wxT("Cucumbersome"), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 366,356 ), long style = wxDEFAULT_FRAME_STYLE|wxTAB_TRAVERSAL );
 		
 		~MainFrame();
 	

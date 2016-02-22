@@ -1,13 +1,12 @@
 #include "main.h"
 
-#include <wx/msgdlg.h>
-#include "cucumbersome.h"
+#include "cucumbersomeframe.h"
 
 IMPLEMENT_APP(CucumbersomeApp)
 
 bool CucumbersomeApp::OnInit()
 {
-	mainFrame = new MainFrame(nullptr);
+	mainFrame = new CucumbersomeFrame();
 	mainFrame->Show();
 	return true;
 }
