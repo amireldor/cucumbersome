@@ -4,20 +4,35 @@
 
 CucumbersomeFrame::CucumbersomeFrame() : MainFrame(nullptr)
 {
+	this->beatTimer = new wxTimer(this, BEAT_TIMER);
+	this->Bind(wxEVT_TIMER, &CucumbersomeFrame::OnBeat, this);
 }
 
 void CucumbersomeFrame::HandlePomodoro(wxCommandEvent& event) {
-	wxMessageBox(wxT("Pomodoro"));
+	this->StartCountdown(25 * 60);	// 25 minutes
 }
 
 void CucumbersomeFrame::HandleShortBreak(wxCommandEvent& event) {
-	wxMessageBox(wxT("Short"));
+	this->StartCountdown(3 * 60);	// 3 minutes
 }
 
 void CucumbersomeFrame::HandleLongBreak(wxCommandEvent& event) {
-	wxMessageBox(wxT("Long"));
+	this->StartCountdown(15 * 60);	// 15 minutes
 }
 
 void CucumbersomeFrame::HandlePause(wxCommandEvent& event) {
 	wxMessageBox(wxT("Pause"));
+}
+
+void CucumbersomeFrame::StartCountdown(unsigned int seconds) {
+	this->secondsLeft = seconds;
+	this->beatTimer->Start(1000);
+}
+
+void CucumbersomeFrame::OnBeat(wxTimerEvent& event)
+{
+	this->secondsLeft--;
+	wxString text;
+	text << "Time: " << this->secondsLeft;
+	this->SetTitle(text);
 }
